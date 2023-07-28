@@ -33,9 +33,6 @@ There are many options to interact with the database, they include:
 - Users can create their own profiles and their posts and comments are stored in back-end database
 
 
-### Link to walkthorugh video
-
-
 ## Contribution Guidelines
 This is a private project for instructional purposes. Future contributions are unlikely but possible.
 
