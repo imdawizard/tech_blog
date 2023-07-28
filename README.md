@@ -44,6 +44,10 @@ GitHub: [imdawizard](https://github.com/imdawizard)
 Email: nate.is.cool.yeah@gmail.com
 
 ## Link to deployed application:
+https://imdawizard.github.io/tech_blog/
 
+## Link to deployed Heroku app:
+https://tech-blog-imdawizard-9c1ea840933a.herokuapp.com/
+https://git.heroku.com/tech-blog-imdawizard.git
 
 ## Screenshot:
