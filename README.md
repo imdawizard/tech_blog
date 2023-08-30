@@ -13,7 +13,7 @@ The project for week 14---A Model-View-Controller Tech blog
 ## Installation
 You will need:
 1. Node downloaded onto your machine.
-2. Express also downloaded and initiated.
+2. Express downloaded and initiated.
 3. Inquirer package downloaded and initiated.
 4. All other packages can be initiated by running npm install with the help of the package.json file
 
