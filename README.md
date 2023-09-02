@@ -39,7 +39,7 @@ This is a private project for instructional purposes. Future contributions are u
 ### Questions
 For any questions, please contact me:
 
-GitHub: [imdawizard](https://github.com/imdawizard)
+GitHub: [Nate's Repo](https://github.com/imdawizard)
 
 Email: nate.is.cool.yeah@gmail.com
 
@@ -49,3 +49,5 @@ https://imdawizard.github.io/tech_blog/
 ## Link to deployed Heroku app:
 - https://tech-blog-imdawizard-9c1ea840933a.herokuapp.com/
 - https://git.heroku.com/tech-blog-imdawizard.git
+
+Add description

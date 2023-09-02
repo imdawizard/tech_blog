@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const withAuth = require('../utils/auth');
 
 router.post('/', async (req, res) => {
   try {
@@ -12,8 +13,10 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      //redirect the user to the homepage after the successful registration
+      res.redirect('/homepage');
 
-      res.status(200).json(userData);
+      // res.status(200).json(userData);
     });
   } catch (err) {
     console.log(err);

@@ -84,4 +84,4 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
-// module.exports = { Blogpost, User };
+module.exports = { Blogpost, User };
