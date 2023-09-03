@@ -10,6 +10,9 @@ The project for week 14---A Model-View-Controller Tech blog
  - [Questons/Contact](#questions)
 
 
+# Description
+Tech Blog is a modern content managment system(CMS)-style web application that empowers developers and tech enthuasiasts to publish their blog posts, engage in discussions, and build an online tech community. Built on a robust architecture following the Model-View-Controller(MVC) paradigm, the application is feature-rich and user-friendly.
+
 ## Installation
 You will need:
 1. Node downloaded onto your machine.
@@ -49,5 +52,3 @@ https://imdawizard.github.io/tech_blog/
 ## Link to deployed Heroku app:
 - https://tech-blog-imdawizard-9c1ea840933a.herokuapp.com/
 - https://git.heroku.com/tech-blog-imdawizard.git
-
-Add description
