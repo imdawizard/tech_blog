@@ -14,9 +14,9 @@ router.post('/', async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       //redirect the user to the homepage after the successful registration
-      res.redirect('/homepage');
+      // res.redirect('/homepage');
 
-      // res.status(200).json(userData);
+      res.status(200).json(userData);
     });
   } catch (err) {
     console.log(err);

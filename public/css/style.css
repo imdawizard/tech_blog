@@ -22,3 +22,47 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+
+
+/* Style the body element */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style headings */
+h1, h2 {
+    color: #333;
+}
+
+/* Style the blog post container */
+.blog-post {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Style the create new post button */
+.create-post-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style the create new post button on hover */
+.create-post-button:hover {
+    background-color: #0056b3;
+}

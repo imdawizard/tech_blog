@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const user = require('./User');
 
 class Blogpost extends Model {}
 
@@ -40,5 +41,10 @@ Blogpost.init(
     modelName: 'blogpost',
   }
 );
+
+Blogpost.belongsTo(user, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
+});
 
 module.exports = Blogpost;

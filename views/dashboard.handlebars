@@ -1,32 +1,3 @@
-
-<!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="../public/css/style.css">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Blog Posts</title>
-</head>
-<body>
-    <h1>All Blog Posts</h1>
-    <h2>Welcome to your tech Blog!</h2>
-    
-    {{#if blogposts}}
-        <ul>
-            {{#each blogposts}}
-                <li>
-                    <h2>{{title}}</h2>
-                    <p>{{content}}</p>
-                    <p>Created by {{username}} on {{date_created}}</p>
-                </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p>No blog posts available.</p>
-    {{/if}}
-
-    <a href="/login">Create New Post</a>
-
 {{!-- <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{username}}!</h2>
@@ -68,6 +39,41 @@
     {{/each}}
   </div>
   {{/if}}
-</div>
+</div> --}}
+
+{{!-- <script src="./js/profile.js"></script> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+</head>
+<body>
+    <h1>Welcome to Your Dashboard, {{username}}!</h1>
+    
+    <h2>Your Blog Posts</h2>
+    
+    {{#if blogposts.length}}
+        <ul>
+            {{#each blogposts}}
+                <li>
+                    <h3>{{title}}</h3>
+                    <p>{{content}}</p>
+                    <p>Created on {{date_created}}</p>
+                    <p>
+                        <a href="/update/{{id}}">Update</a> | 
+                        <a href="/delete/{{id}}">Delete</a>
+                    </p>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No blog posts available.</p>
+    {{/if}}
+
+    <a href="/newPost">Create New Blog Post</a>
 </body>
-</html> --}}
+</html>
