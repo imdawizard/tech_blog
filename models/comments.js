@@ -27,10 +27,10 @@ Comment.init(
         key: 'id',
       },
     },
-    blogpost_id: { // Add this foreign key to associate comments with blog posts
+    blogpost_id: { // Foreign key to associate comments with blog posts
       type: DataTypes.INTEGER,
       references: {
-        model: 'blogpost', // Make sure this matches your actual model name
+        model: 'Blogpost',
         key: 'id',
       },
     },
