@@ -27,6 +27,13 @@ Comment.init(
         key: 'id',
       },
     },
+    blogpost_id: { // Add this foreign key to associate comments with blog posts
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'blogpost', // Make sure this matches your actual model name
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,

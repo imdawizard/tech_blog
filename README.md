@@ -56,11 +56,11 @@ https://imdawizard.github.io/tech_blog/
 
  This assignment poses its challenges, but you're undoubtedly on the right path. Stay persistent. Here are the technical requirements to address: 
  * The home page should display all existing blog posts, including the post title, contents, creator’s username, and date created. Similarly, a user's dashboard should display their blog posts. 
- * The dashboard needs an option to create new blog posts. 
- * From the dashboard, users should be able to click on their blog posts to either update or delete them. 
+ <!-- * The dashboard needs an option to create new blog posts.  -->
+ <!-- * From the dashboard, users should be able to click on their blog posts to either update or delete them.  -->
  * Users should be able to click on existing blog posts from the home page to view details like the post title, contents, creator’s username, date created, and any existing comments (including comment content, comment creator’s username, and creation date). 
  * Logged-in users should be able to comment on a post, with the post updating to include that comment. 
- * Navigation should include a logout link. The application should also auto-log out users who've been idle for a set duration. 
- * Navigation options should include home, dashboard, and the login page. If a user isn't logged in, attempting to access the dashboard should redirect them to the login page. 
+ <!-- * Navigation should include a logout link. The application should also auto-log out users who've been idle for a set duration.  -->
+ <!-- * Navigation options should include home, dashboard, and the login page. If a user isn't logged in, attempting to access the dashboard should redirect them to the login page.  -->
  * The repository README lacks a screenshot of the deployed application. 
  Your dedication to coding shines through. With these adjustments, your application will shine even brighter. Should you encounter any obstacles while working on this feedback, the instructional support team and askBCS are here to help. Keep up the momentum, Ibrahim! Warmly, OP

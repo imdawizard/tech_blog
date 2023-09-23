@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const { User, Project } = require('../models');
-const Blogpost = require('../models/Blogpost');
+const { User, Blogpost } = require('../models');
+// const Blogpost = require('../models/Blogpost');
 // const User = require('../models/User');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     // Get all blogposts and JOIN with user data
-    const blogpostData = await Project.findAll({
+    const blogpostData = await Blogpost.findAll({
       include: [
         {
           model: User,
@@ -30,25 +30,31 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/blogpost/:id', async (req, res) => {
+// router.get('/blogpost/:id', async (req, res) => {
+//   try {
+//     const blogpostData = await Blogpost.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//       ],
+//     });
+
+router.get('/blogposts/:id', async (req, res) => {
   try {
-    const blogpostData = await Blogpost.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+    const postId = req.params.id;
+    // Fetch the blog post data for the specified ID
+    const blogpost = await Blogpost.findByPk(postId, {
+      include: [{ model: Comment, include: User }], // Include comments and their creators
     });
-
-    const Blogpost = blogpostData.get({ plain: true });
-
-    res.render('Blogpost', {
-      ...Blogpost,
-      logged_in: req.session.logged_in
-    });
+    if (!blogpost) {
+      // Handle the case where the blog post is not found
+      return res.status(404).render('error'); // You can create an error handle view
+    }
+    // Render the "blogPostDetail" view and pass the blogpost data to it
+    res.render('blogPostDetail', { blogpost });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -91,6 +97,26 @@ router.get('/newPost', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// router.get('/updatePost/id', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Blogpost }],
+//     });
+
+//     const user = userData.get({ plain: true });
+
+//     res.render('updatePost', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

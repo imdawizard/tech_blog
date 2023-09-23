@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Detail</title>
+    <!-- Add your CSS styles here -->
+</head>
+<body>
+    <h1>Blog Post Detail</h1>
+
+    <div class="post-details">
+        <h2>{{blogpost.title}}</h2>
+        <p>Posted by {{blogpost.User.username}} on {{formatDate blogpost.createdAt}}</p>
+        <p>{{blogpost.content}}</p>
+    </div>
+
+    <h2>Comments</h2>
+
+    {{#if blogpost.Comments.length}}
+        <ul class="comment-list">
+            {{#each blogpost.Comments}}
+                <li class="comment">
+                    <p>Comment by {{User.username}} on {{formatDate createdAt}}</p>
+                    <p>{{content}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No comments available for this post.</p>
+    {{/if}}
+
+    <a href="/dashboard">Back to Dashboard</a>
+
+    <!-- Include any JavaScript for functionality here -->
+</body>
+</html>

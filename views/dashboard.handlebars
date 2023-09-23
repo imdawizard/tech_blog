@@ -1,48 +1,3 @@
-{{!-- <div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{username}}!</h2>
-  </div>
-</div>
-
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Post:</h3>
-
-    <form class="form new-project-form">
-      <div class="form-group">
-        <label for="project-name">Post Title:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
-      </div>
-      <div class="form-group">
-        <label for="project-desc">Post here:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
-
-  {{#if blogposts.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Posts:</h3>
-
-    {{#each blogposts as |blogpost|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/blogpost/{{blogpost.id}}">{{blogpost.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div> --}}
-
-{{!-- <script src="./js/profile.js"></script> --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,8 +19,9 @@
                     <p>{{content}}</p>
                     <p>Created on {{date_created}}</p>
                     <p>
-                        <a href="/update/{{id}}">Update</a> | 
-                        <a href="/delete/{{id}}">Delete</a>
+                        <!-- Button to trigger the update function -->
+                       <button onclick="updateBlogPost('{{id}}')">Update</button> |
+                       <button onclick="deleteBlogPost('{{id}}')">Delete</button>
                     </p>
                 </li>
             {{/each}}
@@ -76,4 +32,62 @@
 
     <a href="/newPost">Create New Blog Post</a>
 </body>
+<script>
+    // Function to update a blog post
+    function updateBlogPost(postId) {
+        // Prompt the user for a new title and content
+        const newTitle = prompt('Enter new title:');
+        const newContent = prompt('Enter new content:');
+        console.log('newTitle:', newTitle);
+        console.log('newContent:', newContent);
+
+        // Make a PUT request to update the post
+        fetch(`api/blogposts/${postId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title: newTitle, content: newContent }),
+        })
+        .then(response => {
+            if (response.ok) {
+                // Reload the page to see the updated data
+                location.reload();
+            } else {
+                alert('Failed to update the blog post.');
+                console.error(error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while updating the blog post.');
+        });
+    }
+    function deleteBlogPost(postId) {
+    // Confirm the delete action with the user
+    const confirmDelete = confirm('Are you sure you want to delete this blog post?');
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    // Make a DELETE request to delete the post
+    fetch(`/api/blogposts/${postId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Reload the page to reflect the updated list
+            window.location.reload();
+        } else {
+            window.location.reload();
+            console.error('Error:', response.status);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while deleting the blog post.');
+    });
+}
+</script>
 </html>
