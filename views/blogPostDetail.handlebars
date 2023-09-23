@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post Detail</title>
-    <!-- Add your CSS styles here -->
+    <!-- Add css styles here -->
 </head>
 <body>
     <h1>Blog Post Detail</h1>
 
+{{!-- {{#if blogposts}} --}}
     <div class="post-details">
-        <h2>{{blogpost.title}}</h2>
-        <p>Posted by {{blogpost.User.username}} on {{formatDate blogpost.createdAt}}</p>
+        <h2>{{blogpost.datavalues.title}}</h2>
+        <p>Posted by {{blogpost.User.username}} on 
+            {{!-- {{formatDate blogpost.createdAt}} --}}
+            </p>
         <p>{{blogpost.content}}</p>
     </div>
 
@@ -21,17 +24,18 @@
         <ul class="comment-list">
             {{#each blogpost.Comments}}
                 <li class="comment">
-                    <p>Comment by {{User.username}} on {{formatDate createdAt}}</p>
-                    <p>{{content}}</p>
+                    <p>Comment by {{User.username}} on 
+                        {{date_created}}
+                        </p>
+                    <p>{{comment}}</p>
                 </li>
             {{/each}}
         </ul>
     {{else}}
-        <p>No comments available for this post.</p>
+        <p>Be the first to comment!</p>
     {{/if}}
 
     <a href="/dashboard">Back to Dashboard</a>
 
-    <!-- Include any JavaScript for functionality here -->
 </body>
 </html>
