@@ -11,14 +11,14 @@
 
 {{!-- {{#if blogposts}} --}}
     <div class="post-details">
-        <h2>{{blogpost.datavalues.title}}</h2>
-        <p>Posted by {{blogpost.User.username}} on 
-            {{!-- {{formatDate blogpost.createdAt}} --}}
+        <h2>{{blogpost.dataValues.title}}</h2>
+         <p>{{blogpost.dataValues.content}}</p>
+        <p>Posted by {{user.dataValues.username}} on 
+            {{blogpost.dataValues.date_created}}
             </p>
-        <p>{{blogpost.content}}</p>
     </div>
 
-    <h2>Comments</h2>
+    {{!-- <h2>Comments</h2>
 
     {{#if blogpost.Comments.length}}
         <ul class="comment-list">
@@ -28,13 +28,71 @@
                         {{date_created}}
                         </p>
                     <p>{{comment}}</p>
+                    <p>Add a comment</p>
                 </li>
             {{/each}}
         </ul>
     {{else}}
         <p>Be the first to comment!</p>
+    {{/if}} --}}
+
+    <h2>Comments</h2>
+
+    {{#if blogpost.Comments.length}}
+        <ul class="comment-list">
+            {{#each blogpost.Comments}}
+                <li class="comment">
+                    <p>{{content}}</p>
+                    <p>Comment by {{User.username}} on {{formatDate createdAt}}</p>
+                    <button onclick="addComment()"></button>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>Looks like there's no comments..</p>
+        <button onclick="addComment({{blogpost.id}})">Be the first to comment!</button>
+        <form id="comment-form" class="comment-form" style="display: none;">
+            <div class="form-group">
+                <label for="comment-content">Comment:</label>
+                <textarea class="form-input" id="comment-content" name="content" required></textarea>
+            </div>
+            <div class="form-group">
+                <button id="comment-button" type="button" class="btn btn-primary" onclick="addComment({{blogpost.id}})" >Comment</button>
+            </div>
+        </form>
     {{/if}}
 
+    <script>
+        function addComment(blogpostId){
+            const comment = prompt('Enter comment:');
+            console.log('comment:', comment);
+
+             //Make a post request
+            fetch('/api/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({comment: comment, blogpost_id: blogpostId}),
+            })
+            .then(response => {
+            if (response.ok) {
+                // Reload the page to see the updated data
+                location.reload();
+            } else {
+                alert('Failed to make the comment.');
+                console.error(error);
+            }
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            console.log(comment);
+            alert('An error occurred while making your comment.');
+        });
+
+        }
+    </script>
+    <p></p>
     <a href="/dashboard">Back to Dashboard</a>
 
 </body>

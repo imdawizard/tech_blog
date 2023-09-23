@@ -48,13 +48,15 @@ router.get('/blogposts/:id', async (req, res) => {
     const blogpost = await Blogpost.findByPk(postId, {
       // include: [{ model: Comment, include: User }], // Include comments and their creators
     });
+    const user= await User.findByPk(blogpost.dataValues.user_id);
+
     if (!blogpost) {
       // Handle the case where the blog post is not found
       return res.status(404).render('error'); // You can create an error handle view
     }
     const blogpostData = blogpost.toJSON();
     // Render the "blogPostDetail" view and pass the blogpost data to it
-    res.render('blogPostDetail', { blogpost });
+    res.render('blogPostDetail', { blogpost, user });
     console.log(blogpost);
   } catch (err) {
     res.status(500).json(err);
