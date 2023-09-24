@@ -46,7 +46,7 @@ router.get('/blogposts/:id', async (req, res) => {
     const postId = req.params.id;
     // Fetch the blog post data for the specified ID
     const blogpost = await Blogpost.findByPk(postId, {
-      // include: [{ model: Comment, include: User }], // Include comments and their creators
+       include: [{ model: Comment, include: User }], // Include comments and their creators
     });
     const user= await User.findByPk(blogpost.dataValues.user_id);
 

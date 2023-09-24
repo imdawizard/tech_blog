@@ -3,18 +3,18 @@ const { Comment } = require('../../models');
 // const { Blogpost } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// router.get('/blogpost/:id', async (req, res) => {
-//   try {
-//     const blogpost = await Blogpost.findByPk(req.params.id, {
-//       include: [{ model: Comment }],
-//     });
-//     // Render the template with the blogpost data, which now includes comments
-//     res.render('blogPostDetail', { blogpost });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/blogpost/:id', async (req, res) => {
+  try {
+    const blogpost = await Blogpost.findByPk(req.params.id, {
+      include: [{ model: Comment }],
+    });
+    // Render the template with the blogpost data, which now includes comments
+    res.render('blogPostDetail', { blogpost });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
 // Route to create a new comment
 router.post('/',   async (req, res) => {

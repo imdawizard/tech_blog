@@ -19,27 +19,27 @@
     </div>
 
     <h2>Comments</h2>
-
+    {{!-- {{help blogpost.Comments}} --}}
     {{#if blogpost.Comments.length}}
         <ul class="comment-list">
             {{#each blogpost.Comments}}
                 <li class="comment">
-                    <p>{{comment}}</p>
-                    <p>Comment by {{User.username}} on {{formatDate createdAt}}</p>
+                    <p>{{dataValues.comment}}</p>
+                    <p>Comment by {{User.dataValues.username}} on {{format_date dataValues.date_created}}</p>
                     <button onclick="addComment()"></button>
                 </li>
             {{/each}}
         </ul>
     {{else}}
         <p>Looks like there's no comments..</p>
-        <button onclick="addComment({{blogpost.id}})">Be the first to comment!</button>
+        <button onclick="addComment({{blogpost.dataValues.id}})">Be the first to comment!</button>
         <form id="comment-form" class="comment-form" style="display: none;">
             <div class="form-group">
                 <label for="comment-content">Comment:</label>
                 <textarea class="form-input" id="comment-content" name="content" required></textarea>
             </div>
             <div class="form-group">
-                <button id="comment-button" type="button" class="btn btn-primary" onclick="addComment({{blogpost.id}})" >Comment</button>
+                <button id="comment-button" type="button" class="btn btn-primary" onclick="addComment({{blogpost.dataValues.id}})" >Comment</button>
             </div>
         </form>
     {{/if}}
@@ -61,6 +61,7 @@
             if (response.ok) {
                 // Reload the page to see the updated data
                 location.reload();
+                conosle.log(blogpostId);
             } else {
                 alert('Failed to make the comment.');
                 console.error(error);
