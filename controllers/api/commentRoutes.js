@@ -8,8 +8,14 @@ router.get('/blogpost/:id', async (req, res) => {
     const blogpost = await Blogpost.findByPk(req.params.id, {
       include: [{ model: Comment }],
     });
+
+    // const userLoggedIn = !!req.session.user_id;
     // Render the template with the blogpost data, which now includes comments
-    res.render('blogPostDetail', { blogpost });
+    res.render('blogPostDetail', { 
+      blogpost, 
+      logged_in: req.session.logged_in 
+    });
+    // res.render('blogPostDetail', { blogpost, userLoggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -17,7 +23,7 @@ router.get('/blogpost/:id', async (req, res) => {
 });
 
 // Route to create a new comment
-router.post('/',   async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
       comment: req.body.comment,
